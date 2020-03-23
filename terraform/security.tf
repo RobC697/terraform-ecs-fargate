@@ -12,7 +12,12 @@ resource "aws_security_group" "lb" {
     to_port     = var.app_port
     cidr_blocks = ["0.0.0.0/0"]
   }
-
+  ingress {
+    protocol    = "tcp"
+    from_port   = 5432
+    to_port     = 5432
+    cidr_blocks = ["0.0.0.0/0"]#change to fit the database
+  }
   egress {
     protocol    = "-1"
     from_port   = 0

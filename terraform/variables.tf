@@ -7,7 +7,7 @@ variable "aws_region" {
 
 variable "ecs_task_execution_role_name" {
   description = "ECS task execution role name"
-  default = "myEcsTaskExecutionRole"
+  default = "CrossfeedStagingEcsTaskExecutionRole"
 }
 
 variable "az_count" {
@@ -17,7 +17,7 @@ variable "az_count" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "bradfordhamilton/crystal_blockchain:latest"
+  default     = "bradfordhamilton/crystal_blockchain:latest" #change this shit
 }
 
 variable "app_port" {
@@ -27,7 +27,7 @@ variable "app_port" {
 
 variable "app_count" {
   description = "Number of docker containers to run"
-  default     = 3
+  default     = 2
 }
 
 variable "health_check_path" {
@@ -44,3 +44,7 @@ variable "fargate_memory" {
   default     = "2048"
 }
 
+variable "ecs_task_exe_role" { 
+  description = "ECS task execution role" 
+  default = "AWSServiceRoleForECS"
+  }

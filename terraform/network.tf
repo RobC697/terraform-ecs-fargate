@@ -6,6 +6,9 @@ data "aws_availability_zones" "available" {
 
 resource "aws_vpc" "main" {
   cidr_block = "172.17.0.0/16"
+  tags = {
+    name = "Crossfeed_Staging"
+  }
 }
 
 # Create var.az_count private subnets, each in a different AZ
@@ -37,12 +40,15 @@ resource "aws_route" "internet_access" {
   gateway_id             = aws_internet_gateway.gw.id
 }
 
-# Create a NAT gateway with an Elastic IP for each private subnet to get internet connectivity
+#Create a NAT gateway with an Elastic IP for each private subnet to get internet connectivity
 resource "aws_eip" "gw" {
   count      = var.az_count
   vpc        = true
   depends_on = [aws_internet_gateway.gw]
 }
+# data "aws_eip" "gw" {
+#   id = "eipalloc-07d2f5648e89aae07"
+# }
 
 resource "aws_nat_gateway" "gw" {
   count         = var.az_count
