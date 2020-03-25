@@ -46,5 +46,5 @@ variable "fargate_memory" {
 
 variable "ecs_task_exe_role" { 
   description = "ECS task execution role" 
-  default = "AWSServiceRoleForECS"
+  default = "CrossfeedStagingDeployRole-v1"
   }

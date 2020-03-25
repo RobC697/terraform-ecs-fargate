@@ -9,7 +9,7 @@ data "aws_iam_role" "ecs_task_exe_role" {
 }
 
 data "template_file" "crossfeed_staging_task_template" {
-  template = file("./templates/ecs/cb_app.json.tpl")
+  template = file("./templates/ecs/crossfeed-staging.json.tpl")
 
   vars = {
     app_image      = var.app_image
